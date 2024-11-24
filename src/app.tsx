@@ -10,10 +10,11 @@ export function App() {
   const { data } = useQuery({
     queryKey: ['summary'],
     queryFn: getSummary,
+    staleTime: 1000 * 60, // 60 seconds
   })
+
   return (
     <Dialog>
-      <EmptyGoals />
       {data && data.total > 0 ? <Summary /> : <EmptyGoals />}
       <CreateGoal />
     </Dialog>
