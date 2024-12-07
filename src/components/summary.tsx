@@ -9,6 +9,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getSummary } from '../http/get-summary'
 import dayjs from 'dayjs'
 import ptBr from 'dayjs/locale/pt-br'
+import { PendingGoals } from './pending-goals'
 
 dayjs.locale(ptBr)
 export function Summary() {
@@ -16,7 +17,6 @@ export function Summary() {
     queryKey: ['summary'],
     queryFn: getSummary,
   })
-  console.log('data', data)
   if (!data) return null
 
   const firstDayOfWeek = dayjs().startOf('week').format('D MMM')
@@ -59,24 +59,7 @@ export function Summary() {
 
       <Separator />
 
-      <div className="flex flex-wrap gap-3">
-        <OutlineButton>
-          <Plus className="size-4 text-zinc-400" />
-          Meditar
-        </OutlineButton>
-        <OutlineButton>
-          <Plus className="size-4 text-zinc-400" />
-          Nadar
-        </OutlineButton>
-        <OutlineButton>
-          <Plus className="size-4 text-zinc-400" />
-          Cagar no mato
-        </OutlineButton>
-        <OutlineButton>
-          <Plus className="size-4 text-zinc-400" />
-          Mijar na piscina
-        </OutlineButton>
-      </div>
+      <PendingGoals />
 
       {/* ================ */}
 
